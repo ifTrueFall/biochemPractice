@@ -120,6 +120,71 @@ img.onload = function() {
 }
 
 /**
+ * Event listener for touchstart to start drawing on the canvas.
+ * Saves the previous touch position and the current touch position.
+ * Saves the points in the points array.
+ * @param {TouchEvent} e - The touch event.
+ * @listens touchstart
+ * @returns {Object} - The touch position object with x and y coordinates.
+ */
+canvas.addEventListener('touchstart', function (e) {
+    e.preventDefault(); // Prevent default touch action (scroll, zoom, etc.)
+    drawing = true;
+    previous = { x: mouse.x, y: mouse.y };
+    mouse = oTouchPos(canvas, e.touches[0]);
+    points = [];
+    points.push({ x: mouse.x, y: mouse.y })
+});
+
+/**
+ * Event listener for touchmove to draw lines on the canvas.
+ * Draws a line from the previous point to the current point.
+ * Saves the points in the points array.
+ * @param {TouchEvent} e - The touch event.
+ * @listens touchmove
+ * @returns {Object} - The touch position object with x and y coordinates.
+ */
+canvas.addEventListener('touchmove', function (e) {
+    e.preventDefault(); // Prevent default touch action (scroll, zoom, etc.)
+    if (drawing) {
+        previous = { x: mouse.x, y: mouse.y };
+        mouse = oTouchPos(canvas, e.touches[0]);
+        // saving the points in the points array
+        points.push({ x: mouse.x, y: mouse.y })
+        // drawing a line from the previous point to the current point
+        ctx.beginPath();
+        ctx.moveTo(previous.x, previous.y);
+        ctx.lineTo(mouse.x, mouse.y);
+        ctx.stroke();
+    }
+}, false);
+
+/**
+ * Event listener for touchend to stop drawing on the canvas.
+ * Pushes the points array into the paths array.
+ * @listens touchend
+ */
+canvas.addEventListener('touchend', function () {
+    drawing = false;
+    pathsry.push(points);
+}, false);
+
+/**
+ * Get the touch position relative to the canvas.
+ * @param {HTMLCanvasElement} canvas - The canvas element.
+ * @param {TouchEvent} evt - The touch event.
+ * @returns {Object} - The touch position object with x and y coordinates.
+ */
+function oTouchPos(canvas, evt) {
+    var ClientRect = canvas.getBoundingClientRect();
+    return {
+        x: Math.round(evt.clientX - ClientRect.left),
+        y: Math.round(evt.clientY - ClientRect.top)
+    }
+}
+
+
+/**
  * Calls the function to undo the last drawn path when the undo button is clicked.
  */
 undo.addEventListener("click", Undo);
