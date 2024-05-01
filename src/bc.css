@@ -1,5 +1,5 @@
 * { box-sizing: border-box; }
-body { background-color: white;
+body { background-color: rgb(101, 97, 97);
        color: #221811;
 	   font-family: Tahoma, Arial, sans-serif; 
 	   margin: 0;  
@@ -7,8 +7,12 @@ body { background-color: white;
 
 nav {
 	display: flex;
-	justify-content: flex-end;
 	vertical-align: middle;
 	margin-left: 20px;
-	
+}
+
+.canvas-container {
+	display: block;
+	justify-content: center;
+	align-items: center;
 }
