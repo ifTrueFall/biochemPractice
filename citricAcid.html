@@ -1,0 +1,42 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <title>BioChem Practice</title>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="icon" type="image/svg+xml"
+        href="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 100 100'%3E%3Ctext x='-27' y='75' font-family='Courier' font-size='117' fill='%23000'%3E☕%3C/text%3E%3C/svg%3E" />
+    <link href="src/bc.css" rel="stylesheet">
+    <meta name="description" content="Lets Cycle this citric Acid">
+    <nav>
+        <ul>
+            <li><a href="index.html">Home</a></li>
+            <li><a href="citricAcid.html">Citric Acid Cycle</a></li>
+        </ul>
+    </nav>
+</head>
+
+<body>
+    <h1>Citric Acid</h1>
+    <div class="video-container">
+        <video width="540" height="440" controls>
+            <source src="src/CitricAcid.mp4" type="video/mp4">
+            Your browser does not support the video tag.
+        </video>
+    </div>
+
+    <div class="canvas-container">
+        <canvas id="drawArea" width="520" height="540"></canvas>
+        <div class="buttons-container">
+            <button id="clear">clear</button>
+            <button id="undo">undo</button>
+        </div>
+    </div>
+    <footer>
+        <p>Footer content here...</p>
+    </footer>
+    <script src="src/canvasScript.js"></script>
+</body>
+
+</html>
